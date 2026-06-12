@@ -1,0 +1,38 @@
+version: '3.8'
+
+services:
+  mongodb:
+    image: mongo:latest
+    ports:
+      - "27017:27017"
+    environment:
+      MONGO_INITDB_ROOT_PASSWORD: atlas123
+      MONGO_INITDB_ROOT_USERNAME: admin
+    volumes:
+      - mongodb_data:/data/db
+    networks:
+      - atlas-network
+
+  backend:
+    build: .
+    ports:
+      - "3000:3000"
+    environment:
+      NODE_ENV: development
+      MONGODB_URI: mongodb://admin:atlas123@mongodb:27017/atlas-tech?authSource=admin
+      JWT_SECRET: your-secret-jwt-key
+      FRONTEND_URL: http://localhost:5173
+    depends_on:
+      - mongodb
+    networks:
+      - atlas-network
+    volumes:
+      - .:/app
+      - /app/node_modules
+
+volumes:
+  mongodb_data:
+
+networks:
+  atlas-network:
+    driver: bridge
