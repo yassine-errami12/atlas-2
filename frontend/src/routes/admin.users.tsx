@@ -25,7 +25,9 @@ function AdminUsers() {
                 <td className="p-3 font-medium">{u.name}</td>
                 <td className="p-3 text-muted-foreground">{u.email}</td>
                 <td className="p-3">
-                  <span className={`rounded-full px-2 py-0.5 text-xs font-medium ${u.role === "admin" ? "bg-primary/20 text-primary" : "bg-muted"}`}>
+                  <span
+                    className={`rounded-full px-2 py-0.5 text-xs font-medium ${u.role === "admin" ? "bg-primary/20 text-primary" : "bg-muted"}`}
+                  >
                     {u.role}
                   </span>
                 </td>

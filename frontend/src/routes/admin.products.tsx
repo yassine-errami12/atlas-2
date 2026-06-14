@@ -5,10 +5,29 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 import { useProductsStore } from "@/store/products";
-import { CATEGORIES, BRANDS, formatMAD, type Brand, type Category, type Product } from "@/data/products";
+import {
+  CATEGORIES,
+  BRANDS,
+  formatMAD,
+  type Brand,
+  type Category,
+  type Product,
+} from "@/data/products";
 import { toast } from "sonner";
 
 export const Route = createFileRoute("/admin/products")({
@@ -16,8 +35,12 @@ export const Route = createFileRoute("/admin/products")({
 });
 
 const empty = {
-  title: "", description: "", price: 0, stock: 0,
-  category: "Audio" as Category, brand: "Atlas" as Brand,
+  title: "",
+  description: "",
+  price: 0,
+  stock: 0,
+  category: "Audio" as Category,
+  brand: "Atlas" as Brand,
   image: "https://placehold.co/600x600/eee/aaa?text=Image",
 };
 
@@ -31,8 +54,16 @@ function AdminProducts() {
   const [editing, setEditing] = useState<Product | null>(null);
   const [form, setForm] = useState(empty);
 
-  const openNew = () => { setEditing(null); setForm(empty); setOpen(true); };
-  const openEdit = (p: Product) => { setEditing(p); setForm(p); setOpen(true); };
+  const openNew = () => {
+    setEditing(null);
+    setForm(empty);
+    setOpen(true);
+  };
+  const openEdit = (p: Product) => {
+    setEditing(p);
+    setForm(p);
+    setOpen(true);
+  };
 
   const submit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -51,7 +82,9 @@ function AdminProducts() {
     <div>
       <div className="mb-4 flex justify-between">
         <h2 className="font-display text-2xl font-bold">Produits ({products.length})</h2>
-        <Button onClick={openNew} className="gap-2"><Plus className="h-4 w-4" /> Nouveau</Button>
+        <Button onClick={openNew} className="gap-2">
+          <Plus className="h-4 w-4" /> Nouveau
+        </Button>
       </div>
 
       <div className="overflow-hidden rounded-2xl border bg-card">
@@ -79,8 +112,19 @@ function AdminProducts() {
                 <td className="p-3">{p.stock}</td>
                 <td className="p-3">
                   <div className="flex gap-1">
-                    <Button size="icon" variant="ghost" onClick={() => openEdit(p)}><Pencil className="h-4 w-4" /></Button>
-                    <Button size="icon" variant="ghost" onClick={() => { if (confirm("Supprimer ?")) { deleteProduct(p.id); toast.success("Supprimé"); } }}>
+                    <Button size="icon" variant="ghost" onClick={() => openEdit(p)}>
+                      <Pencil className="h-4 w-4" />
+                    </Button>
+                    <Button
+                      size="icon"
+                      variant="ghost"
+                      onClick={() => {
+                        if (confirm("Supprimer ?")) {
+                          deleteProduct(p.id);
+                          toast.success("Supprimé");
+                        }
+                      }}
+                    >
                       <Trash2 className="h-4 w-4 text-destructive" />
                     </Button>
                   </div>
@@ -99,46 +143,90 @@ function AdminProducts() {
           <form onSubmit={submit} className="space-y-4">
             <div>
               <Label>Titre</Label>
-              <Input value={form.title} onChange={(e) => setForm({ ...form, title: e.target.value })} required maxLength={150} />
+              <Input
+                value={form.title}
+                onChange={(e) => setForm({ ...form, title: e.target.value })}
+                required
+                maxLength={150}
+              />
             </div>
             <div>
               <Label>Description</Label>
-              <Textarea value={form.description} onChange={(e) => setForm({ ...form, description: e.target.value })} maxLength={500} />
+              <Textarea
+                value={form.description}
+                onChange={(e) => setForm({ ...form, description: e.target.value })}
+                maxLength={500}
+              />
             </div>
             <div className="grid grid-cols-2 gap-4">
               <div>
                 <Label>Prix (MAD)</Label>
-                <Input type="number" value={form.price} onChange={(e) => setForm({ ...form, price: Number(e.target.value) })} required min={1} />
+                <Input
+                  type="number"
+                  value={form.price}
+                  onChange={(e) => setForm({ ...form, price: Number(e.target.value) })}
+                  required
+                  min={1}
+                />
               </div>
               <div>
                 <Label>Stock</Label>
-                <Input type="number" value={form.stock} onChange={(e) => setForm({ ...form, stock: Number(e.target.value) })} required min={0} />
+                <Input
+                  type="number"
+                  value={form.stock}
+                  onChange={(e) => setForm({ ...form, stock: Number(e.target.value) })}
+                  required
+                  min={0}
+                />
               </div>
               <div>
                 <Label>Catégorie</Label>
-                <Select value={form.category} onValueChange={(v) => setForm({ ...form, category: v as Category })}>
-                  <SelectTrigger><SelectValue /></SelectTrigger>
+                <Select
+                  value={form.category}
+                  onValueChange={(v) => setForm({ ...form, category: v as Category })}
+                >
+                  <SelectTrigger>
+                    <SelectValue />
+                  </SelectTrigger>
                   <SelectContent>
-                    {CATEGORIES.map((c) => <SelectItem key={c} value={c}>{c}</SelectItem>)}
+                    {CATEGORIES.map((c) => (
+                      <SelectItem key={c} value={c}>
+                        {c}
+                      </SelectItem>
+                    ))}
                   </SelectContent>
                 </Select>
               </div>
               <div>
                 <Label>Marque</Label>
-                <Select value={form.brand} onValueChange={(v) => setForm({ ...form, brand: v as Brand })}>
-                  <SelectTrigger><SelectValue /></SelectTrigger>
+                <Select
+                  value={form.brand}
+                  onValueChange={(v) => setForm({ ...form, brand: v as Brand })}
+                >
+                  <SelectTrigger>
+                    <SelectValue />
+                  </SelectTrigger>
                   <SelectContent>
-                    {BRANDS.map((b) => <SelectItem key={b} value={b}>{b}</SelectItem>)}
+                    {BRANDS.map((b) => (
+                      <SelectItem key={b} value={b}>
+                        {b}
+                      </SelectItem>
+                    ))}
                   </SelectContent>
                 </Select>
               </div>
             </div>
             <div>
               <Label>URL image</Label>
-              <Input value={form.image} onChange={(e) => setForm({ ...form, image: e.target.value })} />
+              <Input
+                value={form.image}
+                onChange={(e) => setForm({ ...form, image: e.target.value })}
+              />
             </div>
             <div className="flex justify-end gap-2 pt-2">
-              <Button type="button" variant="outline" onClick={() => setOpen(false)}>Annuler</Button>
+              <Button type="button" variant="outline" onClick={() => setOpen(false)}>
+                Annuler
+              </Button>
               <Button type="submit">{editing ? "Enregistrer" : "Créer"}</Button>
             </div>
           </form>

@@ -17,7 +17,7 @@ export function ImageUpload({
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const files = Array.from(e.target.files || []);
-    
+
     if (images.length + files.length > maxImages) {
       alert(`Vous pouvez télécharger maximum ${maxImages} images`);
       return;

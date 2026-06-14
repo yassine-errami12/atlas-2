@@ -46,7 +46,7 @@ function AdminLogin() {
 
       // Perform login
       const res = login(form.email.trim(), form.password);
-      
+
       if (!res.ok) {
         toast.error(res.error || "Authentification échouée");
         setLoading(false);
@@ -137,15 +137,21 @@ function AdminLogin() {
         <div className="mt-6 rounded-xl border border-dashed bg-muted/30 p-4">
           <p className="text-xs font-semibold text-muted-foreground">Compte de démonstration :</p>
           <div className="mt-2 space-y-1 font-mono text-xs text-muted-foreground">
-            <p>Email : <span className="text-foreground">admin@atlas.ma</span></p>
-            <p>Mot de passe : <span className="text-foreground">admin123</span></p>
+            <p>
+              Email : <span className="text-foreground">admin@atlas.ma</span>
+            </p>
+            <p>
+              Mot de passe : <span className="text-foreground">admin123</span>
+            </p>
           </div>
         </div>
 
         {/* Security Notice */}
         <div className="mt-4 rounded-lg border border-amber-200 bg-amber-50/50 p-3 text-xs text-amber-900">
           <p className="font-semibold">🔒 Sécurité</p>
-          <p className="mt-1">Cette zone est réservée aux administrateurs. N'utilisez que sur des réseaux sécurisés.</p>
+          <p className="mt-1">
+            Cette zone est réservée aux administrateurs. N'utilisez que sur des réseaux sécurisés.
+          </p>
         </div>
       </div>
     </div>

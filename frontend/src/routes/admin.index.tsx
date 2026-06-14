@@ -29,7 +29,10 @@ function AdminHome() {
           <div key={s.label} className="rounded-2xl border bg-card p-5">
             <div
               className="flex h-10 w-10 items-center justify-center rounded-xl"
-              style={{ background: `color-mix(in oklab, ${s.color} 15%, transparent)`, color: s.color }}
+              style={{
+                background: `color-mix(in oklab, ${s.color} 15%, transparent)`,
+                color: s.color,
+              }}
             >
               <s.icon className="h-5 w-5" />
             </div>
@@ -43,14 +46,19 @@ function AdminHome() {
         <h2 className="font-display text-xl font-bold">Dernières commandes</h2>
         <div className="mt-4 space-y-2">
           {orders.slice(0, 5).map((o) => (
-            <div key={o.id} className="flex items-center justify-between rounded-lg border p-3 text-sm">
+            <div
+              key={o.id}
+              className="flex items-center justify-between rounded-lg border p-3 text-sm"
+            >
               <span className="font-mono">{o.id}</span>
               <span>{o.customer.name}</span>
               <span className="font-semibold">{formatMAD(o.total)}</span>
               <span className="rounded-full bg-muted px-2 py-0.5 text-xs">{o.status}</span>
             </div>
           ))}
-          {orders.length === 0 && <p className="text-sm text-muted-foreground">Aucune commande encore.</p>}
+          {orders.length === 0 && (
+            <p className="text-sm text-muted-foreground">Aucune commande encore.</p>
+          )}
         </div>
       </div>
     </div>

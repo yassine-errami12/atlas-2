@@ -35,7 +35,8 @@ const seedDatabase = async () => {
     const products = await Product.insertMany([
       {
         title: 'Écouteurs sans fil Atlas Pro',
-        description: 'Son immersif avec réduction de bruit active. Autonomie 24h avec le boîtier de charge.',
+        description:
+          'Son immersif avec réduction de bruit active. Autonomie 24h avec le boîtier de charge.',
         price: 599,
         category: 'Audio',
         brand: 'Atlas',
@@ -90,7 +91,7 @@ const seedDatabase = async () => {
       },
       {
         title: 'Enceinte Bluetooth Atlas Boom',
-        description: 'Son 360°, étanche IPX7, 16h d\'autonomie. Parfaite pour la plage d\'Agadir.',
+        description: "Son 360°, étanche IPX7, 16h d'autonomie. Parfaite pour la plage d'Agadir.",
         price: 449,
         category: 'Audio',
         brand: 'Atlas',
@@ -101,7 +102,7 @@ const seedDatabase = async () => {
       },
       {
         title: 'Fitness Tracker Sahara Z1',
-        description: 'Moniteur cardiaque, 7 sports, 14 jours d\'autonomie.',
+        description: "Moniteur cardiaque, 7 sports, 14 jours d'autonomie.",
         price: 449,
         category: 'Wearables',
         brand: 'Sahara',
@@ -132,7 +133,8 @@ const seedDatabase = async () => {
         userId: users[1]._id,
         author: 'Youssef B.',
         rating: 5,
-        comment: 'Excellent produit ! La qualité du son est incroyable et la réduction de bruit fonctionne parfaitement.',
+        comment:
+          'Excellent produit ! La qualité du son est incroyable et la réduction de bruit fonctionne parfaitement.',
       },
       {
         productId: products[0]._id,

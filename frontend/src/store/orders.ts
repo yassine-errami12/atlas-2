@@ -40,6 +40,6 @@ export const useOrdersStore = create<OrdersState>()(
       setStatus: (id, status) =>
         set((s) => ({ orders: s.orders.map((o) => (o.id === id ? { ...o, status } : o)) })),
     }),
-    { name: "atlas-orders" }
-  )
+    { name: "atlas-orders" },
+  ),
 );

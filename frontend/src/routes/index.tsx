@@ -28,7 +28,8 @@ function Index() {
               <span className="block text-primary italic">votre rythme.</span>
             </h1>
             <p className="max-w-md text-lg text-muted-foreground">
-              Écouteurs, montres connectées, charge et gaming — sélectionnés pour vous, livrés partout au Maroc avec paiement à la livraison.
+              Écouteurs, montres connectées, charge et gaming — sélectionnés pour vous, livrés
+              partout au Maroc avec paiement à la livraison.
             </p>
             <div className="flex flex-wrap gap-3">
               <Link to="/shop">
@@ -37,7 +38,9 @@ function Index() {
                 </Button>
               </Link>
               <Link to="/about">
-                <Button size="lg" variant="outline" className="text-base">Notre histoire</Button>
+                <Button size="lg" variant="outline" className="text-base">
+                  Notre histoire
+                </Button>
               </Link>
             </div>
           </div>

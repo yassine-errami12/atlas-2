@@ -13,13 +13,13 @@ const router = express.Router();
 /**
  * Admin Login Endpoint
  * POST /api/admin/login
- * 
+ *
  * Request body:
  * {
  *   "email": "admin@atlas.ma",
  *   "password": "admin123"
  * }
- * 
+ *
  * Response:
  * {
  *   "user": {
@@ -86,12 +86,12 @@ router.post('/login', async (req: AuthRequest, res: Response) => {
 /**
  * Admin Session Verification
  * GET /api/admin/verify
- * 
+ *
  * Headers:
  * {
  *   "Authorization": "Bearer jwt_token"
  * }
- * 
+ *
  * Response:
  * {
  *   "valid": true,

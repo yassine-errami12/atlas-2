@@ -27,7 +27,7 @@ export const useCartStore = create<CartState>()(
           if (existing) {
             return {
               items: s.items.map((x) =>
-                x.productId === item.productId ? { ...x, quantity: x.quantity + qty } : x
+                x.productId === item.productId ? { ...x, quantity: x.quantity + qty } : x,
               ),
             };
           }
@@ -38,11 +38,11 @@ export const useCartStore = create<CartState>()(
       setQty: (productId, qty) =>
         set((s) => ({
           items: s.items.map((x) =>
-            x.productId === productId ? { ...x, quantity: Math.max(1, qty) } : x
+            x.productId === productId ? { ...x, quantity: Math.max(1, qty) } : x,
           ),
         })),
       clear: () => set({ items: [] }),
     }),
-    { name: "atlas-cart" }
-  )
+    { name: "atlas-cart" },
+  ),
 );

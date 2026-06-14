@@ -1,8 +1,9 @@
 import express, { Response } from 'express';
 import { AuthRequest } from '../middleware/types';
-import { authenticate, adminOnly } from '../middleware/auth';
+import { authenticate } from '../middleware/auth';
 import Review from '../models/Review';
 import Product from '../models/Product';
+import User from '../models/User';
 import { reviewSchema } from '../utils/validation';
 import { AppError } from '../middleware/errorHandler';
 import { logger } from '../utils/logger';
@@ -20,7 +21,10 @@ router.get('/product/:productId', async (req: AuthRequest, res: Response) => {
       reviews.map((r) => ({
         id: r._id.toString(),
         productId: r.productId.toString(),
-        userId: r.userId ? (r.userId as any)._id.toString() : null,
+        userId:
+          r.userId && typeof r.userId === 'object' && '_id' in r.userId
+            ? r.userId._id.toString()
+            : null,
         author: r.author,
         rating: r.rating,
         comment: r.comment,
@@ -48,10 +52,12 @@ router.post('/', authenticate, async (req: AuthRequest, res: Response) => {
       throw new AppError(404, 'Product not found');
     }
 
+    const user = await User.findById(req.userId);
+
     const review = new Review({
       productId: validated.productId,
       userId: req.userId,
-      author: (req as any).user?.name || 'Anonymous',
+      author: user?.name || req.user?.email || 'Anonymous',
       rating: validated.rating,
       comment: validated.comment,
     });
@@ -100,7 +106,7 @@ router.delete('/:id', authenticate, async (req: AuthRequest, res: Response) => {
     }
 
     // Check if user is owner or admin
-    const user = await (require('../models/User')).findById(req.userId);
+    const user = await User.findById(req.userId);
     if (review.userId.toString() !== req.userId && user?.role !== 'admin') {
       throw new AppError(403, 'Forbidden');
     }
@@ -110,7 +116,8 @@ router.delete('/:id', authenticate, async (req: AuthRequest, res: Response) => {
     // Update product rating
     const productReviews = await Review.find({ productId: review.productId });
     if (productReviews.length > 0) {
-      const avgRating = productReviews.reduce((sum, r) => sum + r.rating, 0) / productReviews.length;
+      const avgRating =
+        productReviews.reduce((sum, r) => sum + r.rating, 0) / productReviews.length;
       await Product.findByIdAndUpdate(review.productId, {
         rating: Math.round(avgRating * 10) / 10,
         reviewsCount: productReviews.length,

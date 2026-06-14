@@ -54,7 +54,7 @@ export const useAdminAuthStore = create<AdminAuthState>()(
         return Date.now() - state.loginTime > SESSION_TIMEOUT;
       },
     }),
-    { 
+    {
       name: "atlas-admin-auth",
       // Verify session on hydration
       onRehydrateStorage: () => (state) => {
@@ -62,6 +62,6 @@ export const useAdminAuthStore = create<AdminAuthState>()(
           state.clearSession();
         }
       },
-    }
-  )
+    },
+  ),
 );

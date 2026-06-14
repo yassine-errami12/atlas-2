@@ -55,7 +55,9 @@ export function Header() {
           {user ? (
             <div className="hidden items-center gap-2 md:flex">
               <span className="text-sm text-muted-foreground">{user.name}</span>
-              <Button variant="ghost" size="sm" onClick={logout}>Sortir</Button>
+              <Button variant="ghost" size="sm" onClick={logout}>
+                Sortir
+              </Button>
             </div>
           ) : (
             <Link to="/login" className="hidden md:block">
@@ -97,16 +99,30 @@ export function Header() {
               </Link>
             ))}
             {user?.role === "admin" && (
-              <Link to="/admin" onClick={() => setOpen(false)} className="rounded-md px-3 py-2 text-sm font-medium hover:bg-muted">
+              <Link
+                to="/admin"
+                onClick={() => setOpen(false)}
+                className="rounded-md px-3 py-2 text-sm font-medium hover:bg-muted"
+              >
                 Tableau de bord
               </Link>
             )}
             {user ? (
-              <button onClick={() => { logout(); setOpen(false); }} className="rounded-md px-3 py-2 text-left text-sm font-medium hover:bg-muted">
+              <button
+                onClick={() => {
+                  logout();
+                  setOpen(false);
+                }}
+                className="rounded-md px-3 py-2 text-left text-sm font-medium hover:bg-muted"
+              >
                 Se déconnecter
               </button>
             ) : (
-              <Link to="/login" onClick={() => setOpen(false)} className="rounded-md px-3 py-2 text-sm font-medium hover:bg-muted">
+              <Link
+                to="/login"
+                onClick={() => setOpen(false)}
+                className="rounded-md px-3 py-2 text-sm font-medium hover:bg-muted"
+              >
                 Connexion
               </Link>
             )}

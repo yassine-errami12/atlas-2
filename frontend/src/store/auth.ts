@@ -31,7 +31,10 @@ export const useAuthStore = create<AuthState>()(
         if (get().users.some((u) => u.email === email))
           return { ok: false, error: "Email déjà utilisé" };
         const newUser = { id: `u${Date.now()}`, name, email, password, role: "user" as const };
-        set((s) => ({ users: [...s.users, newUser], user: { id: newUser.id, name, email, role: "user" } }));
+        set((s) => ({
+          users: [...s.users, newUser],
+          user: { id: newUser.id, name, email, role: "user" },
+        }));
         return { ok: true };
       },
       login: (email, password) => {
@@ -42,6 +45,6 @@ export const useAuthStore = create<AuthState>()(
       },
       logout: () => set({ user: null }),
     }),
-    { name: "atlas-auth" }
-  )
+    { name: "atlas-auth" },
+  ),
 );

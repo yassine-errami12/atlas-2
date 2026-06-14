@@ -8,7 +8,7 @@ export const connectDB = async () => {
   try {
     await mongoose.connect(MONGODB_URI);
     logger.info('Connected to MongoDB');
-    
+
     // Check if database is empty and seed it
     const db = mongoose.connection.db;
     if (db) {

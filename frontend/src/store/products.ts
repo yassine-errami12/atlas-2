@@ -18,17 +18,13 @@ export const useProductsStore = create<ProductsState>()(
       reviews: seedReviews,
       addProduct: (p) =>
         set((s) => ({
-          products: [
-            ...s.products,
-            { ...p, id: `p${Date.now()}`, rating: 0, reviewsCount: 0 },
-          ],
+          products: [...s.products, { ...p, id: `p${Date.now()}`, rating: 0, reviewsCount: 0 }],
         })),
       updateProduct: (id, p) =>
         set((s) => ({
           products: s.products.map((x) => (x.id === id ? { ...x, ...p } : x)),
         })),
-      deleteProduct: (id) =>
-        set((s) => ({ products: s.products.filter((x) => x.id !== id) })),
+      deleteProduct: (id) => set((s) => ({ products: s.products.filter((x) => x.id !== id) })),
       addReview: (r) =>
         set((s) => {
           const review: Review = {
@@ -44,11 +40,11 @@ export const useProductsStore = create<ProductsState>()(
             products: s.products.map((p) =>
               p.id === r.productId
                 ? { ...p, rating: Math.round(avg * 10) / 10, reviewsCount: productReviews.length }
-                : p
+                : p,
             ),
           };
         }),
     }),
-    { name: "atlas-products" }
-  )
+    { name: "atlas-products" },
+  ),
 );

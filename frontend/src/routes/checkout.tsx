@@ -48,7 +48,8 @@ function Checkout() {
 
     if (!card.name.trim()) return "Le nom sur la carte est requis";
     if (digits.length !== 16) return "Le numero de carte doit contenir 16 chiffres";
-    if (!/^(0[1-9]|1[0-2])\/\d{2}$/.test(expiry)) return "La date d'expiration doit etre au format MM/AA";
+    if (!/^(0[1-9]|1[0-2])\/\d{2}$/.test(expiry))
+      return "La date d'expiration doit etre au format MM/AA";
     if (!/^\d{3,4}$/.test(cvc)) return "Le code CVC doit contenir 3 ou 4 chiffres";
 
     const [month, year] = expiry.split("/").map(Number);
@@ -83,7 +84,6 @@ function Checkout() {
     toast.success(paymentMethod === "CARD" ? "Paiement en ligne accepte" : "Commande confirmee");
     setDone({ id: order.id, paymentMethod });
   };
-
   if (items.length === 0 && !done) {
     return (
       <div className="container mx-auto px-4 py-20 text-center">
@@ -101,7 +101,8 @@ function Checkout() {
         <CheckCircle2 className="mx-auto h-20 w-20 text-secondary" />
         <h1 className="mt-6 font-display text-4xl font-bold">Merci pour votre commande !</h1>
         <p className="mt-2 text-muted-foreground">
-          Numero de commande : <span className="font-mono font-semibold text-foreground">{done.id}</span>
+          Numero de commande :{" "}
+          <span className="font-mono font-semibold text-foreground">{done.id}</span>
         </p>
         <p className="mt-4 text-sm text-muted-foreground">
           {done.paymentMethod === "CARD"
@@ -175,14 +176,18 @@ function Checkout() {
                 type="button"
                 onClick={() => setPaymentMethod("COD")}
                 className={`rounded-xl border-2 p-4 text-left transition-colors ${
-                  paymentMethod === "COD" ? "border-primary bg-primary/5" : "border-border bg-background hover:border-primary/50"
+                  paymentMethod === "COD"
+                    ? "border-primary bg-primary/5"
+                    : "border-border bg-background hover:border-primary/50"
                 }`}
               >
                 <div className="flex items-center gap-3">
                   <Banknote className="h-6 w-6 text-primary" />
                   <div>
                     <div className="font-semibold">Paiement a la livraison</div>
-                    <div className="text-sm text-muted-foreground">Payez en especes a la reception</div>
+                    <div className="text-sm text-muted-foreground">
+                      Payez en especes a la reception
+                    </div>
                   </div>
                 </div>
               </button>
@@ -191,7 +196,9 @@ function Checkout() {
                 type="button"
                 onClick={() => setPaymentMethod("CARD")}
                 className={`rounded-xl border-2 p-4 text-left transition-colors ${
-                  paymentMethod === "CARD" ? "border-secondary bg-secondary/5" : "border-border bg-background hover:border-secondary/50"
+                  paymentMethod === "CARD"
+                    ? "border-secondary bg-secondary/5"
+                    : "border-border bg-background hover:border-secondary/50"
                 }`}
               >
                 <div className="flex items-center gap-3">
@@ -226,7 +233,9 @@ function Checkout() {
                     <Input
                       id="cardNumber"
                       value={card.number}
-                      onChange={(e) => setCard({ ...card, number: formatCardNumber(e.target.value) })}
+                      onChange={(e) =>
+                        setCard({ ...card, number: formatCardNumber(e.target.value) })
+                      }
                       placeholder="4242 4242 4242 4242"
                       inputMode="numeric"
                       autoComplete="cc-number"
@@ -250,7 +259,9 @@ function Checkout() {
                     <Input
                       id="cardCvc"
                       value={card.cvc}
-                      onChange={(e) => setCard({ ...card, cvc: e.target.value.replace(/\D/g, "").slice(0, 4) })}
+                      onChange={(e) =>
+                        setCard({ ...card, cvc: e.target.value.replace(/\D/g, "").slice(0, 4) })
+                      }
                       placeholder="123"
                       inputMode="numeric"
                       autoComplete="cc-csc"

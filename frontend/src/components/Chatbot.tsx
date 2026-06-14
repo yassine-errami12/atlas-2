@@ -14,12 +14,7 @@ type ChatMessage = {
   products?: Product[];
 };
 
-const quickPrompts = [
-  "Meilleurs produits",
-  "Livraison",
-  "Paiement",
-  "Aide panier",
-];
+const quickPrompts = ["Meilleurs produits", "Livraison", "Paiement", "Aide panier"];
 
 function normalize(value: string) {
   return value
@@ -28,7 +23,11 @@ function normalize(value: string) {
     .replace(/[\u0300-\u036f]/g, "");
 }
 
-function getBotReply(message: string, products: Product[], cartCount: number): Omit<ChatMessage, "id" | "role"> {
+function getBotReply(
+  message: string,
+  products: Product[],
+  cartCount: number,
+): Omit<ChatMessage, "id" | "role"> {
   const text = normalize(message);
   const topRated = [...products].sort((a, b) => b.rating - a.rating).slice(0, 3);
   const lowPrice = [...products].sort((a, b) => a.price - b.price).slice(0, 3);
@@ -57,7 +56,12 @@ function getBotReply(message: string, products: Product[], cartCount: number): O
     };
   }
 
-  if (text.includes("prix") || text.includes("budget") || text.includes("moins cher") || text.includes("cheap")) {
+  if (
+    text.includes("prix") ||
+    text.includes("budget") ||
+    text.includes("moins cher") ||
+    text.includes("cheap")
+  ) {
     return {
       content: "Voici les options les plus accessibles du catalogue.",
       products: lowPrice,
@@ -100,7 +104,8 @@ export function Chatbot() {
     {
       id: 1,
       role: "assistant",
-      content: "Bonjour, je suis l'assistant Atlas.Tech. Je peux recommander des produits ou aider avec votre commande.",
+      content:
+        "Bonjour, je suis l'assistant Atlas.Tech. Je peux recommander des produits ou aider avec votre commande.",
       products: bestProducts,
     },
   ]);
@@ -216,7 +221,9 @@ export function Chatbot() {
                             className="h-11 w-11 rounded-md object-cover"
                           />
                           <span className="min-w-0 flex-1">
-                            <span className="block truncate text-xs font-semibold">{product.title}</span>
+                            <span className="block truncate text-xs font-semibold">
+                              {product.title}
+                            </span>
                             <span className="block text-xs text-muted-foreground">
                               {formatMAD(product.price)} · {product.rating}/5
                             </span>

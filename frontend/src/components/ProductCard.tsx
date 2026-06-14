@@ -11,7 +11,11 @@ export function ProductCard({ product }: { product: Product }) {
 
   return (
     <div className="group flex flex-col overflow-hidden rounded-2xl border bg-card transition-all hover:-translate-y-1 hover:shadow-[var(--shadow-warm)]">
-      <Link to="/product/$id" params={{ id: product.id }} className="block overflow-hidden bg-muted">
+      <Link
+        to="/product/$id"
+        params={{ id: product.id }}
+        className="block overflow-hidden bg-muted"
+      >
         <img
           src={product.image}
           alt={product.title}
@@ -23,12 +27,18 @@ export function ProductCard({ product }: { product: Product }) {
       </Link>
       <div className="flex flex-1 flex-col gap-2 p-4">
         <div className="flex items-center justify-between">
-          <span className="text-xs font-medium uppercase tracking-wider text-secondary">{product.brand}</span>
+          <span className="text-xs font-medium uppercase tracking-wider text-secondary">
+            {product.brand}
+          </span>
           {product.stock < 20 && (
             <span className="text-xs font-medium text-primary">Stock limité</span>
           )}
         </div>
-        <Link to="/product/$id" params={{ id: product.id }} className="line-clamp-2 font-display text-lg font-semibold leading-tight hover:text-primary">
+        <Link
+          to="/product/$id"
+          params={{ id: product.id }}
+          className="line-clamp-2 font-display text-lg font-semibold leading-tight hover:text-primary"
+        >
           {product.title}
         </Link>
         <div className="flex items-center gap-2">
@@ -36,11 +46,18 @@ export function ProductCard({ product }: { product: Product }) {
           <span className="text-xs text-muted-foreground">({product.reviewsCount})</span>
         </div>
         <div className="mt-auto flex items-center justify-between pt-2">
-          <span className="font-display text-xl font-bold text-primary">{formatMAD(product.price)}</span>
+          <span className="font-display text-xl font-bold text-primary">
+            {formatMAD(product.price)}
+          </span>
           <Button
             size="sm"
             onClick={() => {
-              add({ productId: product.id, title: product.title, price: product.price, image: product.image });
+              add({
+                productId: product.id,
+                title: product.title,
+                price: product.price,
+                image: product.image,
+              });
               toast.success("Ajouté au panier");
             }}
           >

@@ -16,13 +16,14 @@ function AdminDashboard() {
   // Calculate statistics
   const totalProducts = products.length;
   const totalReviews = reviews.length;
-  const averageRating = products.length > 0 
-    ? (products.reduce((sum, p) => sum + p.rating, 0) / products.length).toFixed(1)
-    : "0";
+  const averageRating =
+    products.length > 0
+      ? (products.reduce((sum, p) => sum + p.rating, 0) / products.length).toFixed(1)
+      : "0";
   const totalStock = products.reduce((sum, p) => sum + p.stock, 0);
 
   // Calculate total inventory value
-  const inventoryValue = products.reduce((sum, p) => sum + (p.price * p.stock), 0);
+  const inventoryValue = products.reduce((sum, p) => sum + p.price * p.stock, 0);
 
   // Get top products by rating
   const topProducts = [...products].sort((a, b) => b.rating - a.rating).slice(0, 5);
@@ -213,7 +214,9 @@ function StatRow({
     <div>
       <div className="flex items-center justify-between text-sm">
         <p className="font-medium">{label}</p>
-        <p className={`text-sm font-semibold ${danger ? "text-red-600" : warning ? "text-amber-600" : "text-green-600"}`}>
+        <p
+          className={`text-sm font-semibold ${danger ? "text-red-600" : warning ? "text-amber-600" : "text-green-600"}`}
+        >
           {value} / {total}
         </p>
       </div>

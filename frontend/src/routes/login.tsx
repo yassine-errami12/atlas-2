@@ -31,15 +31,32 @@ function Login() {
       <form onSubmit={submit} className="mt-8 space-y-4 rounded-2xl border bg-card p-6">
         <div>
           <Label htmlFor="email">Email</Label>
-          <Input id="email" type="email" value={form.email} onChange={(e) => setForm({ ...form, email: e.target.value })} required />
+          <Input
+            id="email"
+            type="email"
+            value={form.email}
+            onChange={(e) => setForm({ ...form, email: e.target.value })}
+            required
+          />
         </div>
         <div>
           <Label htmlFor="password">Mot de passe</Label>
-          <Input id="password" type="password" value={form.password} onChange={(e) => setForm({ ...form, password: e.target.value })} required />
+          <Input
+            id="password"
+            type="password"
+            value={form.password}
+            onChange={(e) => setForm({ ...form, password: e.target.value })}
+            required
+          />
         </div>
-        <Button type="submit" className="w-full" size="lg">Se connecter</Button>
+        <Button type="submit" className="w-full" size="lg">
+          Se connecter
+        </Button>
         <p className="text-center text-sm text-muted-foreground">
-          Pas encore de compte ? <Link to="/register" className="text-primary hover:underline">Inscription</Link>
+          Pas encore de compte ?{" "}
+          <Link to="/register" className="text-primary hover:underline">
+            Inscription
+          </Link>
         </p>
       </form>
       <div className="mt-4 rounded-xl border border-dashed bg-muted/30 p-4 text-xs text-muted-foreground">

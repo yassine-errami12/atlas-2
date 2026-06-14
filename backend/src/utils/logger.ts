@@ -17,12 +17,12 @@ const colors = {
   reset: '\x1b[0m',
 };
 
-const log = (level: LogLevel, message: string, data?: any) => {
+const log = (level: LogLevel, message: string, data?: unknown) => {
   if (levels[level] >= levels[LOG_LEVEL as LogLevel]) {
     const timestamp = new Date().toISOString();
     const color = colors[level];
     const reset = colors.reset;
-    
+
     if (data) {
       console.log(`${color}[${timestamp}] ${level.toUpperCase()}: ${message}${reset}`, data);
     } else {
@@ -32,8 +32,8 @@ const log = (level: LogLevel, message: string, data?: any) => {
 };
 
 export const logger = {
-  debug: (message: string, data?: any) => log('debug', message, data),
-  info: (message: string, data?: any) => log('info', message, data),
-  warn: (message: string, data?: any) => log('warn', message, data),
-  error: (message: string, data?: any) => log('error', message, data),
+  debug: (message: string, data?: unknown) => log('debug', message, data),
+  info: (message: string, data?: unknown) => log('info', message, data),
+  warn: (message: string, data?: unknown) => log('warn', message, data),
+  error: (message: string, data?: unknown) => log('error', message, data),
 };

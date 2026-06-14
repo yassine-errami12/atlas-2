@@ -33,19 +33,43 @@ function Register() {
       <form onSubmit={submit} className="mt-8 space-y-4 rounded-2xl border bg-card p-6">
         <div>
           <Label htmlFor="name">Nom complet</Label>
-          <Input id="name" value={form.name} onChange={(e) => setForm({ ...form, name: e.target.value })} required maxLength={100} />
+          <Input
+            id="name"
+            value={form.name}
+            onChange={(e) => setForm({ ...form, name: e.target.value })}
+            required
+            maxLength={100}
+          />
         </div>
         <div>
           <Label htmlFor="email">Email</Label>
-          <Input id="email" type="email" value={form.email} onChange={(e) => setForm({ ...form, email: e.target.value })} required />
+          <Input
+            id="email"
+            type="email"
+            value={form.email}
+            onChange={(e) => setForm({ ...form, email: e.target.value })}
+            required
+          />
         </div>
         <div>
           <Label htmlFor="password">Mot de passe (min. 6)</Label>
-          <Input id="password" type="password" value={form.password} onChange={(e) => setForm({ ...form, password: e.target.value })} required minLength={6} />
+          <Input
+            id="password"
+            type="password"
+            value={form.password}
+            onChange={(e) => setForm({ ...form, password: e.target.value })}
+            required
+            minLength={6}
+          />
         </div>
-        <Button type="submit" className="w-full" size="lg">Créer un compte</Button>
+        <Button type="submit" className="w-full" size="lg">
+          Créer un compte
+        </Button>
         <p className="text-center text-sm text-muted-foreground">
-          Déjà un compte ? <Link to="/login" className="text-primary hover:underline">Connexion</Link>
+          Déjà un compte ?{" "}
+          <Link to="/login" className="text-primary hover:underline">
+            Connexion
+          </Link>
         </p>
       </form>
     </div>

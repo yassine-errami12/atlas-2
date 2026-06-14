@@ -19,7 +19,10 @@ export const Route = createFileRoute("/shop")({
   head: () => ({
     meta: [
       { title: "Boutique — Atlas.Tech" },
-      { name: "description", content: "Tous nos accessoires tech : audio, montres, charge, gaming." },
+      {
+        name: "description",
+        content: "Tous nos accessoires tech : audio, montres, charge, gaming.",
+      },
     ],
   }),
   component: Shop,
@@ -30,7 +33,9 @@ function Shop() {
   const products = useProductsStore((s) => s.products);
 
   const [q, setQ] = useState(initial.q ?? "");
-  const [cats, setCats] = useState<Set<Category>>(new Set(initial.category ? [initial.category] : []));
+  const [cats, setCats] = useState<Set<Category>>(
+    new Set(initial.category ? [initial.category] : []),
+  );
   const [brands, setBrands] = useState<Set<Brand>>(new Set());
   const [price, setPrice] = useState<[number, number]>([0, 1500]);
   const [showFilters, setShowFilters] = useState(false);
@@ -47,7 +52,11 @@ function Shop() {
 
   const toggle = <T,>(set: Set<T>, value: T, fn: (s: Set<T>) => void) => {
     const next = new Set(set);
-    next.has(value) ? next.delete(value) : next.add(value);
+    if (next.has(value)) {
+      next.delete(value);
+    } else {
+      next.add(value);
+    }
     fn(next);
   };
 
@@ -69,7 +78,10 @@ function Shop() {
         <div className="space-y-2">
           {BRANDS.map((b) => (
             <label key={b} className="flex cursor-pointer items-center gap-2 text-sm">
-              <Checkbox checked={brands.has(b)} onCheckedChange={() => toggle(brands, b, setBrands)} />
+              <Checkbox
+                checked={brands.has(b)}
+                onCheckedChange={() => toggle(brands, b, setBrands)}
+              />
               {b}
             </label>
           ))}
@@ -90,7 +102,16 @@ function Shop() {
           <span>{price[1]} MAD</span>
         </div>
       </div>
-      <Button variant="outline" className="w-full" onClick={() => { setCats(new Set()); setBrands(new Set()); setPrice([0, 1500]); setQ(""); }}>
+      <Button
+        variant="outline"
+        className="w-full"
+        onClick={() => {
+          setCats(new Set());
+          setBrands(new Set());
+          setPrice([0, 1500]);
+          setQ("");
+        }}
+      >
         Réinitialiser
       </Button>
     </div>
@@ -120,7 +141,11 @@ function Shop() {
         </aside>
 
         <div className="md:hidden">
-          <Button variant="outline" onClick={() => setShowFilters(!showFilters)} className="mb-4 w-full gap-2">
+          <Button
+            variant="outline"
+            onClick={() => setShowFilters(!showFilters)}
+            className="mb-4 w-full gap-2"
+          >
             <SlidersHorizontal className="h-4 w-4" /> Filtres
           </Button>
           {showFilters && <div className="mb-6 rounded-2xl border bg-card p-6">{Filters}</div>}
@@ -133,7 +158,9 @@ function Shop() {
             </div>
           ) : (
             <div className="grid grid-cols-2 gap-4 md:grid-cols-3 md:gap-6">
-              {filtered.map((p) => <ProductCard key={p.id} product={p} />)}
+              {filtered.map((p) => (
+                <ProductCard key={p.id} product={p} />
+              ))}
             </div>
           )}
         </div>

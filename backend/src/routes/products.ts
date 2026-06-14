@@ -1,6 +1,6 @@
 import express, { Response } from 'express';
 import { AuthRequest } from '../middleware/types';
-import { authenticate, adminOnly } from '../middleware/auth';
+import { adminOnly } from '../middleware/auth';
 import Product from '../models/Product';
 import { productSchema } from '../utils/validation';
 import { AppError } from '../middleware/errorHandler';

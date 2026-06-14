@@ -15,20 +15,35 @@ export function Footer() {
           </p>
         </div>
         <div>
-          <h4 className="mb-3 text-sm font-semibold uppercase tracking-wider opacity-80">Boutique</h4>
+          <h4 className="mb-3 text-sm font-semibold uppercase tracking-wider opacity-80">
+            Boutique
+          </h4>
           <ul className="space-y-2 text-sm">
-            <li>Audio</li><li>Wearables</li><li>Charge</li><li>Gaming</li>
+            <li>Audio</li>
+            <li>Wearables</li>
+            <li>Charge</li>
+            <li>Gaming</li>
           </ul>
         </div>
         <div>
           <h4 className="mb-3 text-sm font-semibold uppercase tracking-wider opacity-80">Aide</h4>
           <ul className="space-y-2 text-sm">
-            <li>Livraison & retours</li><li>Garantie 1 an</li><li>Nous contacter</li>
+            <li>Livraison & retours</li>
+            <li>Garantie 1 an</li>
+            <li>Nous contacter</li>
           </ul>
         </div>
         <div>
-          <h4 className="mb-3 text-sm font-semibold uppercase tracking-wider opacity-80">Contact</h4>
-          <p className="text-sm opacity-80">Casablanca, Maroc<br/>+212 6 00 00 00 00<br/>contact@atlas.ma</p>
+          <h4 className="mb-3 text-sm font-semibold uppercase tracking-wider opacity-80">
+            Contact
+          </h4>
+          <p className="text-sm opacity-80">
+            Casablanca, Maroc
+            <br />
+            +212 6 00 00 00 00
+            <br />
+            contact@atlas.ma
+          </p>
         </div>
       </div>
       <div className="border-t border-white/10 py-6 text-center text-xs opacity-70">

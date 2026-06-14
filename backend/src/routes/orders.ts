@@ -113,7 +113,7 @@ router.patch('/:id/status', adminOnly, async (req: AuthRequest, res: Response) =
       throw new AppError(404, 'Order not found');
     }
 
-    logger.info('Order status updated:', order._id, validated.status);
+    logger.info(`Order status updated: ${order._id} -> ${validated.status}`);
 
     res.json({
       id: order._id.toString(),
