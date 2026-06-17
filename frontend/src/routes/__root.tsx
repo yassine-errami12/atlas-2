@@ -3,6 +3,7 @@ import { Toaster } from "@/components/ui/sonner";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { Chatbot } from "@/components/Chatbot";
+import StoreLocation from "@/components/StoreLocation";
 
 import appCss from "../styles.css?url";
 
@@ -74,6 +75,7 @@ function RootComponent() {
       <main className="flex-1">
         <Outlet />
       </main>
+      <StoreLocation />
       <Footer />
       <Chatbot />
       <Toaster richColors position="top-right" />
